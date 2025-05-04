@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.card {
+    background-color: #2d2d3a;
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    background-color: #3a3a4d;
+    transform: scale(1.02);
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.text {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 8px;
+    word-wrap: break-word;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.votes {
+    font-size: 14px;
+    color: #a5a5a5;
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 14px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+
+    .votes {
+        font-size: 13px;
+    }
+}

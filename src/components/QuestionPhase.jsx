@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import  socket  from "../socket";
+import socket from "../socket";
+import styles from "../assets/QuestionPhase.module.css";
 
 export default function QuestionPhase() {
-
   const [inputValue, setInputValue] = useState("");
   const [answerCounter, setAnswerCounter] = useState(0);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   function handleSend() {
     if (inputValue.trim() !== "") {
-      socket.emit("sendAnswer", inputValue); // Envía la respuesta por el socket
-      setInputValue(""); // Vacía el input
-      setIsButtonDisabled(true); // Bloquea el botón de enviar
+      socket.emit("sendAnswer", inputValue);
+      setInputValue("");
+      setIsButtonDisabled(true);
     }
   }
 
@@ -22,29 +22,25 @@ export default function QuestionPhase() {
     return () => socket.off("answers-count");
   }, []);
 
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.title}>Problema X</h2>
+      <p className={styles.subtitle}>Escribe tu requisito</p>
+      <textarea
+        className={styles.textarea}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        disabled={isButtonDisabled}
+      />
 
-    return (
-      <div>
-        <h2>Problema x</h2>
-        <p>Escribe tu requisito</p>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          disabled={isButtonDisabled}
-        />
-        <button
-          onClick={handleSend}
-          disabled={isButtonDisabled}
-        >
-          Enviar
-        </button>
-
-        <div>Respuestas enviadas: {answerCounter}</div>
-
-      </div>
-    );
-
-
-  }
-  
+      <button
+        className={styles.button}
+        onClick={handleSend}
+        disabled={isButtonDisabled}
+      >
+        Enviar
+      </button>
+      <div className={styles.counter}>Respuestas enviadas: {answerCounter}</div>
+    </div>
+  );
+}

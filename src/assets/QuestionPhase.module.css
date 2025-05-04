@@ -1,0 +1,124 @@
+.container {
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  width: 90%;
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #aaaaaa;
+  margin-bottom: 20px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: none;
+  padding: 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2d2d3a;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  outline: none;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s;
+}
+
+.textarea:focus {
+  box-shadow: 0 0 0 2px #03dac6;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #03dac6;
+  color: #121212;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.button:hover:enabled {
+  background-color: #00bfa5;
+  transform: scale(1.05);
+}
+
+.counter {
+  margin-top: 20px;
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* 🔽 RESPONSIVE DESIGN 🔽 */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .textarea {
+    font-size: 15px;
+    min-height: 100px;
+  }
+
+  .button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .counter {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 20px auto;
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+
+  .textarea {
+    min-height: 90px;
+    padding: 12px;
+  }
+
+  .button {
+    max-width: 100%;
+  }
+}

@@ -1,23 +1,21 @@
 import { useEffect, useState } from "react";
 import socket from "../socket";
+import styles from "../assets/AdminPanel.module.css";
 
 export default function AdminPanel() {
   const [connectedUsers, setConnectedUsers] = useState(0);
   const [answersArr, setAnswersArr] = useState([]);
-  const [votesArr, setVotesArr] = useState([]); // Estado para los votos
+  const [votesArr, setVotesArr] = useState([]);
 
   useEffect(() => {
-    socket.on("users-count", (count) => {
-      setConnectedUsers(count);
-    });
-
+    socket.on("users-count", (count) => setConnectedUsers(count));
     return () => socket.off("users-count");
   }, []);
 
   useEffect(() => {
     socket.on("votePhaseUsers", ({ answers }) => {
       setAnswersArr(answers);
-      setVotesArr(new Array(answers.length).fill(0)); // Inicializa los votos en 0
+      setVotesArr(new Array(answers.length).fill(0));
     });
 
     return () => socket.off("votePhaseUsers");
@@ -35,38 +33,31 @@ export default function AdminPanel() {
     return () => socket.off("voteUpdate");
   }, []);
 
-  const startGame = () => {
-    socket.emit("start-phase-2");
-  };
-
-  const votePhase = () => {
-    socket.emit("votePhase");
-  };
-
-  const endPhase = () => {
-    socket.emit("endPhase");
-  };
-
-  const reset = () => {
-    socket.emit("reset");
-  };
+  const startGame = () => socket.emit("start-phase-2");
+  const votePhase = () => socket.emit("votePhase");
+  const endPhase = () => socket.emit("endPhase");
+  const reset = () => socket.emit("reset");
 
   return (
-    <>
-      <div>
-        <h2>Admin Panel</h2>
-        <p>Usuarios conectados: {connectedUsers}</p>
-        <button onClick={startGame}>Jugar</button>
-        <button onClick={votePhase}>Comenzar Votacion</button>
-        <button onClick={endPhase}>Terminar Juego</button>
-        <button onClick={reset}>reset</button>
+    <div className={styles.panelContainer}>
+      <h2 className={styles.title}>Admin Panel</h2>
+      <p className={styles.userCount}>Usuarios conectados: {connectedUsers}</p>
+
+      <div className={styles.buttonGroup}>
+        <button className={styles.button} onClick={startGame}>Jugar</button>
+        <button className={styles.button} onClick={votePhase}>Comenzar Votación</button>
+        <button className={styles.button} onClick={endPhase}>Terminar Juego</button>
+        <button className={styles.button} onClick={reset}>Reset</button>
       </div>
 
-      {answersArr.map((answer, i) => (
-        <h1 key={i}>
-          {answer.answer} - Votes: {votesArr[i] || 0}
-        </h1>
-      ))}
-    </>
+      <div className={styles.answersGrid}>
+        {answersArr.map((answer, i) => (
+          <div key={i} className={styles.answerCard}>
+            <div className={styles.answerText}>{answer.answer}</div>
+            <div className={styles.voteCount}>Votos: {votesArr[i] || 0}</div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
