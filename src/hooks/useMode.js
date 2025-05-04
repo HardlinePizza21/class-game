@@ -8,13 +8,15 @@ export const useMode = () => {
     useEffect(() => {
 
         socket.on("validacion", (resp) => {
-          
-            if(resp == "ok"){
-                setMode("admin")
-            }else {
-                setMode("error")
+            if (resp == "ok") {
+            setMode("admin");
+            } else {
+            setMode("error");
             }
+        });
 
+        socket.on("resetEvent", () => {
+            setMode(undefined); // Reset mode to its initial state
         });
     
         return () => socket.off("users-count");

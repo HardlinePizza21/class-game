@@ -1,17 +1,14 @@
 import AdminPage from "./pages/AdminPage";
 import UserPage from "./pages/UserPage";
 import useMode from "./hooks/useMode"
-import { useEffect, useState } from "react";
-import socket from "./socket";
+import { useState } from "react";
 
 function App() {
 
   const [mode, validatePassword] = useMode();
   const [password, setPassword] = useState('');
   
-  useEffect(() => {
-    socket.emit("join");
-  },[])
+
 
   if (!mode) {
     return (
