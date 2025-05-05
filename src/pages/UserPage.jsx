@@ -26,7 +26,7 @@ export default function UserPage() {
     setAnswersArr(answers)
     setPhase("endPhase")
   })
-  socket.on("resetEvent", ({answers}) => {
+  socket.on("resetEvent", () => {
     setAnswersArr([])
     setPhase("waiting")
   })
