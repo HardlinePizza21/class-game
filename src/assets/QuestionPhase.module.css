@@ -122,3 +122,19 @@
     max-width: 100%;
   }
 }
+
+.highlightTurnos {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.highlightMedellin {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.highlightGritar {
+  color: #dc3545;
+  font-weight: bold;
+  font-style: italic;
+}

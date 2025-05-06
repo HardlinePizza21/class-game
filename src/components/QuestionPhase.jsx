@@ -24,8 +24,10 @@ export default function QuestionPhase() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Problema X</h2>
-      <p className={styles.subtitle}>Escribe tu requisito</p>
+      <h2 className={styles.title}>
+        La Alcaldía de <span className={styles.highlightMedellin}>Medellín</span> necesita un mecanismo para administrar de forma eficiente los <span className={styles.highlightTurnos}>turnos</span> de atención a los ciudadanos en sus oficinas, evitando así tener que <span className={styles.highlightGritar}>gritar</span> para llamar a alguien.
+      </h2>
+      <p className={styles.subtitle}>Escribe tu solucion</p>
       <textarea
         className={styles.textarea}
         value={inputValue}

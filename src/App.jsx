@@ -2,7 +2,7 @@ import AdminPage from "./pages/AdminPage";
 import UserPage from "./pages/UserPage";
 import useMode from "./hooks/useMode";
 import { useState } from "react";
-import styles from './assets/App.module.css'; // ✅ Importar como módulo
+import styles from './assets/App.module.css';
 
 function App() {
   const [mode, validatePassword] = useMode();
@@ -10,7 +10,7 @@ function App() {
 
   if (!mode) {
     return (
-      <div className={styles.centerScreen}> {/* ✅ clase de centrado */}
+      <div className={styles.centerScreen}> 
         <div className={styles.container}>
           <button 
             onClick={() => validatePassword(password, "user")}

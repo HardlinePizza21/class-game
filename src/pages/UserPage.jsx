@@ -11,26 +11,32 @@ export default function UserPage() {
 
   useEffect(()=> {
     socket.emit("join");
+
+    socket.on("start-phase-2", () => {
+      setPhase("questionPhase")
+    })
+  
+    socket.on("votePhaseUsers", ({answers}) => {
+      setAnswersArr(answers)
+      setPhase("votePhase")
+    })
+    socket.on("endPhaseUsers", ({answers}) => {
+      setAnswersArr(answers)
+      setPhase("endPhase")
+    })
+    socket.on("resetEvent", () => {
+      setAnswersArr([])
+      setPhase("waiting")
+    })
+
+    return () => {
+      socket.off('start-phase-2');
+      socket.off('votePhaseUsers');
+      socket.off('endPhaseUsers');
+      socket.off('resetEvent');
+
+    }
   },[])
-
-
-  socket.on("start-phase-2", () => {
-    setPhase("questionPhase")
-  })
-
-  socket.on("votePhaseUsers", ({answers}) => {
-    setAnswersArr(answers)
-    setPhase("votePhase")
-  })
-  socket.on("endPhaseUsers", ({answers}) => {
-    setAnswersArr(answers)
-    setPhase("endPhase")
-  })
-  socket.on("resetEvent", () => {
-    setAnswersArr([])
-    setPhase("waiting")
-  })
-
 
   if(phase === "waiting"){
     return <LoadingScreen/>
